@@ -61,6 +61,26 @@ function setTile(){
 }
 
 
+var resetBtn=document.getElementById("reset");
+resetBtn.addEventListener("click",reset);
+
+function reset(){
+    document.getElementById("draw").style.display="none";
+    board=[
+        [' ',' ',' '],
+        [' ',' ',' '],
+        [' ',' ',' ']
+    ]
+    for(r=0;r<3;r++){
+        for(c=0;c<3;c++){
+            let tile=document.getElementById(r.toString()+'-'+c.toString());
+            tile.innerText='';
+            tile.classList.remove("winner");
+        }
+    }
+    currPlayer=playerO;
+    gameOver=false;
+}
 
 
 function checkWinner(){
