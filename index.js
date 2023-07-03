@@ -1,6 +1,9 @@
 var board;
 var playerO="O";
 var playerX="X";
+var xScore=0;
+var oScore=0;
+var drawScore=0;
 var currPlayer=playerO;
 var gameOver=false;
 
@@ -57,6 +60,9 @@ function setTile(){
     checkWinner();
 }
 
+
+
+
 function checkWinner(){
     for(r=0;r<3;r++){
         if(board[r][0]==board[r][1] && board[r][1] == board[r][2] && board[r][0]!=" "){
@@ -64,16 +70,43 @@ function checkWinner(){
                 let tile=document.getElementById(r.toString()+"-"+i.toString());
                 tile.classList.add("winner");
             }
+
+            if(board[r][0]=="O"){
+                document.getElementById("draw").innerText="O wins";
+                oScore++;
+                document.getElementById("oscore").innerText="O's Score: "+oScore;
+            }
+            else{
+                document.getElementById("draw").innerText="X wins";
+                xScore++;
+                document.getElementById("xscore").innerText="X's Score: "+xScore;
+            }
+            document.getElementById("draw").style.display="block";
+
             gameOver=true;
             return;
         }
     }
+
     for(c=0;c<3;c++){
         if(board[0][c]==board[1][c] && board[1][c] == board[2][c] && board[0][c]!=" "){
             for(let i=0;i<3;i++){
                 let tile=document.getElementById(i.toString()+"-"+c.toString());
                 tile.classList.add("winner");
             }
+
+            if(board[0][c]=="O"){
+                document.getElementById("draw").innerText="O wins";
+                oScore++;
+                document.getElementById("oscore").innerText="O's Score: "+oScore;
+            }
+            else{
+                document.getElementById("draw").innerText="X wins";
+                xScore++;
+                document.getElementById("xscore").innerText="X's Score: "+xScore;
+            }
+            document.getElementById("draw").style.display="block";
+
             gameOver=true;
             return;
         }
@@ -84,6 +117,19 @@ function checkWinner(){
             let tile=document.getElementById(i.toString()+"-"+i.toString());
             tile.classList.add("winner");
         }
+
+        if(board[0][0]=="O"){
+            document.getElementById("draw").innerText="O wins";
+            oScore++;
+            document.getElementById("oscore").innerText="O's Score: "+oScore;
+        }
+        else{
+            document.getElementById("draw").innerText="X wins";
+            xScore++;
+            document.getElementById("xscore").innerText="X's Score: "+xScore;
+        }
+        document.getElementById("draw").style.display="block";
+
         gameOver=true;
         return;
     }
@@ -95,7 +141,35 @@ function checkWinner(){
         tile.classList.add("winner");
         tile=document.getElementById("2-0");
         tile.classList.add("winner");
+
+        if(board[2][0]=="O"){
+            document.getElementById("draw").innerText="O wins";
+            oScore++;
+            document.getElementById("oscore").innerText="O's Score: "+oScore;
+        }
+        else{
+            document.getElementById("draw").innerText="X wins";
+            xScore++;
+            document.getElementById("xscore").innerText="X's Score: "+xScore;
+        }
+        document.getElementById("draw").style.display="block";
+
         gameOver=true;
         return;
     }
+
+    for(r=0;r<3;r++){
+        for(c=0;c<3;c++){
+            if(board[r][c]==' '){
+                return;
+            }
+        }
+    }
+    gameOver=true;
+    console.log("draw");
+    document.getElementById("draw").innerText="Draw";
+    document.getElementById("draw").style.display="block";
+    drawScore++;
+    document.getElementById("drawscore").innerText="Draws: "+drawScore;
+    
 }

@@ -10,12 +10,12 @@ hr{
 }
 
 #board{
-    height: 60vmin;
-    width: 60vmin;
+    height: 50vmin;
+    width: 50vmin;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr;
-    margin: 10vmin auto;
+    margin: 6vmin auto;
 }
 
 .tile{
@@ -36,4 +36,8 @@ hr{
 .winner{
     background-color: rgb(64, 64, 64);
     color: white;
+}
+
+#draw{
+    display: none;
 }
